@@ -172,8 +172,7 @@ function installCli() {
 runTestLogCollector() {
   if [ "${enableTestLogCollector}" = true ]; then
     if [[ "$BUILD_TYPE" == "master" ]]; then
-      shout "Install test-log-collector"
-      date
+      log::info "Install test-log-collector"
       export PROW_JOB_NAME="post-master-kyma-gke-upgrade"
       (
         "${TEST_INFRA_CLUSTER_INTEGRATION_SCRIPTS}/install-test-log-collector.sh" || true # we want it to work on "best effort" basis, which does not interfere with cluster
@@ -471,7 +470,6 @@ function upgradeKyma() {
 
 # testKyma executes the kyma-testing.sh. labelqueries can be passed as arguments and will be passed to the kyma cli
 function testKyma() {
-  if ...
   testing::inject_addons_if_necessary
 
   local labelquery=${1}
